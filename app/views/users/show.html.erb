@@ -6,17 +6,17 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-3">
-      <h1>User info</h1>
+      <h2>User info</h2>
       <table class="table">
         <tbody>
           <tr>
             <th>name</th>
-            <td></td>
+            <td><%= current_user.name %></td>
           </tr>
 
           <tr>
             <th>introduction</th>
-            <td></td>
+            <td><%= current_user.introduction %></td>
           </tr>
         </tbody>
       </table>
@@ -26,7 +26,7 @@
         </a>
       </div>
 
-      <h1>New Book</h1>
+      <h2>New Book</h2>
       <%= form_for(@book) do |f| %>
       <div class="field row">
         <%= f.label :Title %>
@@ -46,7 +46,7 @@
     </div>
 
     <div class="col-xs-9">
-      <h1>Books</h1>
+      <h2>Books</h2>
       <table class="table table-hover tableinverse">
         <thead>
   	      <tr>
@@ -61,7 +61,7 @@
   	      <% @books.each do |book| %>
   	        <tr>
               <td></td>
-  	          <td> <%= book.title %> </td>
+  	          <td><%= book.title %></td>
   	          <td> <%= book.body %> </td>
   	        </tr>
   	      <% end %>

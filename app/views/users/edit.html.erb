@@ -1,2 +1,28 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+  	<div class="col-xs-3">
+  	  <h2>User info</h2>
+  	  <%= form_for(@user) do |f| %>
+  	  <div class="field">
+  	    <%= f.label :name %>
+  	    <%= f.text_field :name %>
+  	  </div><br />
+
+  	  <div class="field">
+  	    <%= f.label :Image %>
+  	    <%= f.attachment_field :profile_image %>
+  	  </div><br />
+
+  	  <div class="field">
+  	    <%= f.label :Introduction %>
+  	    <%= f.text_area :introduction %>
+  	  </div><br />
+
+  	  <div class="actions">
+  	    <%= f.submit "Update User" %>
+  	  </div>
+
+  	  <% end %>
+  	</div>
+  </div>
+</div>

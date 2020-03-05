@@ -7,13 +7,20 @@ class UsersController < ApplicationController
   def show
   	@book = Book.new
   	@books = Book.all
+
   end
 
   def create
   end
 
   def edit
-    @book = Book.find(params[:id])
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    redirect_to user_path(@user)
   end
 
   private
