@@ -15,3 +15,20 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.headline {
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.glyphicon {
+  font-size: 13px;
+  padding: 10px;
+  color: gray;
+  line-height: 20px;
+}
+.glyphicon:hover {
+  color: white;
+}
+

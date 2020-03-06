@@ -1,14 +1,15 @@
+<div class="container">
+
 <% if flash[:notice] %>
-  <div class="flash">
+  <p>
     <%= flash[:notice] %>
-  </div>
+  </p>
 <% end %>
 
-<div class="container">
   <div class="row">
     <div class="col-xs-3">
       <h2>User info</h2>
-      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-square pull-left profile-img", fallback: "no_image.jpg" %>
       <table class="table">
         <tbody>
           <tr>
@@ -23,11 +24,10 @@
         </tbody>
       </table>
       <div class="row">
-        <a class="col-xs-12 btn btn-default"　href="users/:id" >
-          <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-        </a>
+        <%= link_to edit_user_path(@user) do %>
+          <div class="col-xs-12 btn btn-default glyphicon glyphicon-wrench" aria-hidden="true"></div>
+        <% end %>
       </div>
-
       <h2>New Book</h2>
       <%= form_for(@book) do |f| %>
 
@@ -74,7 +74,9 @@
         <tbody>
   	      <% @books.each do |book| %>
   	        <tr>
-              <td></td>
+              <td>
+                <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-square pull-left profile-img", fallback: "no_image.jpg" %>
+                </td>
   	          <td><%= book.title %></td>
   	          <td> <%= book.body %> </td>
   	        </tr>

@@ -10,6 +10,38 @@
   </head>
 
   <body>
+    <header class="nav navbar-inverse">
+      <nav class="container">
+        <div class="nav navbar-nav navbar-left">
+          <span class="headline">Bookers</span>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+          <%= link_to user_path(@user) do %>
+            <li class="glyphicon glyphicon-home" aria-hidden="true">Home</li>
+          <% end %>
+          <%= link_to user_path(@user) do %>
+            <li class="glyphicon glyphicon-user" aria-hidden="true">Users</li>
+          <% end %>
+          <%= link_to user_path(@user) do %>
+            <li class="glyphicon glyphicon-book" aria-hidden="true">Books</li>
+          <% end %>
+          <%= link_to user_path(@user) do %>
+            <li class="glyphicon glyphicon-log-out" aria-hidden="true">logout</li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
+
+
     <%= yield %>
+
+    <footer>
+      <div class="container">
+        <div class="col-xs-3 col-xs-offset-9">
+          <p>CopyRight Infratop.inc</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
