@@ -1,2 +1,79 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<div class="container">
+
+<% if flash[:notice] %>
+  <p>
+    <%= flash[:notice] %>
+  </p>
+<% end %>
+
+  <div class="row">
+    <div class="col-xs-3">
+      <h2>User info</h2>
+      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-square pull-left profile-img", fallback: "no_image.jpg" %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>name</th>
+            <td><%= @user.name %></td>
+          </tr>
+
+          <tr>
+            <th>introduction</th>
+            <td><%= @user.introduction %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <%= link_to edit_user_path(@user) do %>
+          <div class="col-xs-12 btn btn-default glyphicon glyphicon-wrench" aria-hidden="true"></div>
+        <% end %>
+      </div>
+      <h2>New Book</h2>
+      <%= form_for(@book) do |f| %>
+
+      <% if @book.errors.any? %>
+        <div id="explanation">
+          <h2><%= @book.errors.count %>errors prohibited this obj from being saved: %></h2>
+          <ul>
+            <% @book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field row">
+        <%= f.label :Title %>
+        <%= f.text_field :title, class: "col-xs-12 book_title" %>
+      </div><br />
+
+      <div class="field row">
+        <%= f.label :Option %>
+        <%= f.text_area :body, class: "col-xs-12 book_body" %>
+      </div><br />
+
+      <div class="actions row">
+          <%= f.submit "Create Book", class: "btn btn-primary col-xs-12"%>
+      </div>
+
+      <% end %>
+    </div>
+
+    <div class="col-xs-9">
+      <h2>Book detail</h2>
+      <table class="table table-hover tableinverse">
+        <tbody>
+            <tr>
+              <td>
+                <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-square pull-left profile-img", fallback: "no_image.jpg" %>
+                </td>
+              <td><%= @book.title %></td>
+              <td> <%= @book.body %> </td>
+              <td><%= link_to "edit", edit_book_path(@book) %></td>
+              <td><%= link_to "destroy", book_path(@book), method: :delete %></td>
+            </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+</div>
