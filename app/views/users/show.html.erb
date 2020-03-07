@@ -44,12 +44,12 @@
 
       <div class="field row">
         <%= f.label :Title %>
-        <%= f.text_field :title, class: "col-xs-12 book_title" %>
+        <%= f.text_field :title, class: "col-xs-12 book_title", placeholder: "" %>
       </div><br />
 
       <div class="field row">
         <%= f.label :Option %>
-        <%= f.text_area :body, class: "col-xs-12 book_body" %>
+        <%= f.text_area :body, class: "col-xs-12 book_body", placeholder: "" %>
       </div><br />
 
       <div class="actions row">
@@ -77,7 +77,7 @@
               <td>
                 <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-square pull-left profile-img", fallback: "no_image.jpg" %>
                 </td>
-  	          <td><%= book.title %></td>
+  	          <td><%= link_to book.title, book_path %></td>
   	          <td> <%= book.body %> </td>
   	        </tr>
   	      <% end %>
