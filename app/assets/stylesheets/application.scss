@@ -22,16 +22,21 @@
   padding: 10px;
 }
 
-.glyphicon {
+li　.glyphicon {
   font-size: 13px;
   padding: 10px;
   color: gray;
   line-height: 20px;
 }
-.glyphicon:hover {
+li .glyphicon:hover {
   color: white;
 }
 
 a {
   color: #666;
 }
+
+.sign_in, .sign_up, .Edit, .Destroy {
+  color: #666;
+}
+
