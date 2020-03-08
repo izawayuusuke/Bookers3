@@ -3,12 +3,12 @@
 
 <div class="col-xs-9">
   <h2>Book detail</h2>
-  <table class="table table-hover tableinverse">
+  <table class="table">
   <tbody>
     <tr>
       <td>
         <%= link_to user_path(@user) do %>
-          <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-square pull-left profile-img", fallback: "no_image.jpg" %><br>
+          <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-square profile-img", fallback: "no_image.jpg" %><br>
           <%= @user.name %>
         <% end %>
       </td>
