@@ -1,23 +1,25 @@
 <%= render 'users/userinfo', user: @user %>
-<%= render 'books/newbook', book: @book %>
+<%= render 'books/newbook', book: @new_book %>
 
-    <div class="col-xs-9">
-      <h2>Book detail</h2>
-      <table class="table table-hover tableinverse">
-        <tbody>
-            <tr>
-              <td>
-                <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-square pull-left profile-img", fallback: "no_image.jpg" %>
-                </td>
-              <td><%= @book.title %></td>
-              <td> <%= @book.body %> </td>
-            <% if @book.user == current_user %>
-              <td><%= link_to "edit", edit_book_path(@book), class: "btn-sm btn-success Edit" %></td>
-                <td><%= link_to "destroy", book_path(@book), class: "btn-sm btn-danger Destroy", method: :delete %></td>
-              <% end %>
-            </tr>
-        </tbody>
-      </table>
-      </div>
-    </div>
+<div class="col-xs-9">
+  <h2>Book detail</h2>
+  <table class="table table-hover tableinverse">
+  <tbody>
+    <tr>
+      <td>
+        <%= link_to user_path(@user) do %>
+          <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-square pull-left profile-img", fallback: "no_image.jpg" %><br>
+          <%= @user.name %>
+        <% end %>
+      </td>
+      <td><%= @book.title %></td>
+      <td> <%= @book.body %> </td>
+      <% if @book.user == current_user %>
+        <td><%= link_to "Edit", edit_book_path(@book), class: "btn-sm btn-success edit" %></td>
+        <td><%= link_to "Destroy", book_path(@book), class: "btn-sm btn-danger destroy", method: :delete %></td>
+      <% end %>
+    </tr>
+  </tbody>
+  </table>
+</div>
 </div>

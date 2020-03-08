@@ -16,6 +16,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+label {
+  margin-bottom: 5px;
+}
+
 .field, .actions {
   margin-bottom: 10px;
 }
@@ -40,7 +44,7 @@ a {
   color: #666;
 }
 
-.sign_in, .sign_up, .Edit, .Destroy {
+.sign_in, .sign_up, .edit, .destroy {
   color: #666;
 }
 
