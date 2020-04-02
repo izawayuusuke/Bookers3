@@ -13,6 +13,21 @@
         </td>
         <td><%= @book.title %></td>
         <td> <%= @book.body %> </td>
+
+        <% if @book.favorited_by?(current_user) %>
+          <td><%= link_to book_favorites_path(@book), method: :delete do %>
+            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+            <%= @book.favorites.count %>
+          <% end %>
+          </td>
+        <% else %>
+          <td><%= link_to book_favorites_path(@book), method: :post do %>
+            <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+            <%= @book.favorites.count %>
+          <% end %>
+          </td>
+        <% end %>
+
         <% if @book.user == current_user %>
           <td><%= link_to "Edit", edit_book_path(@book), class: "btn-sm btn-success edit" %></td>
           <td><%= link_to "Destroy", book_path(@book), method: :delete, data: { confirm: "本当に消しますか？"}, class: "btn-sm btn-danger destroy" %></td>
