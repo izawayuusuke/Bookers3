@@ -1,4 +1,15 @@
 <%= render 'users/sidebar', user: @user, book: @new_book %>
+<% if @book_comment.errors.any? %>
+  <div id="explanation">
+    <h3><%= pluralize(@book_comment.errors.count, "error") %> prohibited this obj from being saved:</h3>
+    <ul>
+      <% @book_comment.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 
   <div class="col-xs-9">
     <h2>Book detail</h2>
@@ -7,7 +18,7 @@
       <tr>
         <td>
           <%= link_to user_path(@user) do %>
-            <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-square profile-img", fallback: "no_image.jpg" %><br>
+            <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, class: "img-square profile-img", fallback: "no_image.jpg" %><br>
             <%= @user.name %>
           <% end %>
         </td>
@@ -28,6 +39,8 @@
           </td>
         <% end %>
 
+        <td>コメント数: <%= @book.book_comments.count %></td>
+
         <% if @book.user == current_user %>
           <td><%= link_to "Edit", edit_book_path(@book), class: "btn-sm btn-success edit" %></td>
           <td><%= link_to "Destroy", book_path(@book), method: :delete, data: { confirm: "本当に消しますか？"}, class: "btn-sm btn-danger destroy" %></td>
@@ -35,5 +48,32 @@
       </tr>
     </tbody>
     </table>
+
+    <h2>Comments</h2>
+    <table class="table">
+    <% @book.book_comments.each do |book_comment| %>
+      <tr>
+        <td>
+          <%= link_to user_path(book_comment.user_id) do %>
+            <%= attachment_image_tag book_comment.user, :profile_image, :fill, 50, 50, class: "img-square profile-img", fallback: "no_image.jpg" %><br>
+            <%= book_comment.user.name %>
+          <% end %>
+        </td>
+        <td><%= book_comment.comment %></td>
+        <% if book_comment.user == current_user %>
+          <td><%= link_to "Destroy", book_book_comments_path(@book), method: :delete, data: { confirm: "本当に消しますか？"}, class: "btn-sm btn-danger destroy" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </table>
+
+    <%= form_for [@book, @book_comment] do |f| %>
+      <div class="row">
+        <div class="col-sm-12">
+          <%= f.text_area :comment, rows: '5', class: "form-control" %>
+        </div>
+      </div>
+      <%= f.submit "送信", class: "btn btn-default pull-right" %>
+    <% end %>
   </div>
 </div>
