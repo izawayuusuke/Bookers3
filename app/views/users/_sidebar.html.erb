@@ -1,6 +1,6 @@
       <% if book.errors.any? %>
         <div id="explanation">
-          <h3><%= book.errors.count %> errors prohibited this obj from being saved:</h3>
+          <h3><%= pluralize(book.errors.count, "error") %> prohibited this obj from being saved:</h3>
           <ul>
             <% book.errors.full_messages.each do |message| %>
               <li><%= message %></li>
@@ -27,9 +27,7 @@
         </tbody>
       </table>
       <div class="row">
-        <%= link_to edit_user_path(user) do %>
-          <div class="col-xs-12 btn btn-default glyphicon glyphicon-wrench" aria-hidden="true"></div>
-        <% end %>
+        <%= link_to '', edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
       </div>
       <h2>New book</h2>
       <%= form_for(book) do |f| %>

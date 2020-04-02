@@ -2,33 +2,33 @@
   <%= form_for(@user) do |f| %>
 
   <% if @user.errors.any? %>
-  	<div id="explanation">
-  	  <h3><%= @user.errors.count %>errors prohibited this obj from being saved:</h3>
-  	  <ul>
-  	    <% @user.errors.full_messages.each do |message| %>
-  	      <li><%= message %></li>
-  	    <% end %>
-  	  </ul>
-  	</div>
+		<div id="explanation">
+			<h3><%= pluralize(@user.errors.count, "error") %> prohibited this obj from being saved:</h3>
+			<ul>
+				<% @user.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
   <% end %>
 
     <div class="field">
-  	  <%= f.label :name %>
-  	  <%= f.text_field :name %>
-  	</div>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+		</div>
 
     <div class="field">
-  	  <%= f.label :Image %>
-  	  <%= f.attachment_field :profile_image %>
+			<%= f.label :Image %>
+			<%= f.attachment_field :profile_image %>
     </div>
 
     <div class="field">
-  	  <%= f.label :Introduction %>
-  	  <%= f.text_area :introduction %>
+			<%= f.label :Introduction %>
+			<%= f.text_area :introduction %>
     </div>
 
     <div class="actions">
-  	  <%= f.submit "Update User" %>
+			<%= f.submit "Update User" %>
     </div>
 
   <% end %>
