@@ -1,0 +1,11 @@
+<td>following: <%= user.following.count %></td>
+<td>followers: <%= user.followers.count %></td>
+<td>
+  <% unless user == current_user %>
+    <% if current_user.following?(user) %>
+      <%= render 'unfollow', user: user %>
+    <% else %>
+      <%= render 'follow', user: user %>
+    <% end %>
+  <% end %>
+</td>

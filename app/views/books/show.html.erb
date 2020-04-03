@@ -27,19 +27,19 @@
 
         <% if @book.favorited_by?(current_user) %>
           <td><%= link_to book_favorites_path(@book), method: :delete do %>
-            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-heart"></span>
             <%= @book.favorites.count %>
           <% end %>
           </td>
         <% else %>
           <td><%= link_to book_favorites_path(@book), method: :post do %>
-            <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-heart-empty"></span>
             <%= @book.favorites.count %>
           <% end %>
           </td>
         <% end %>
 
-        <td>コメント数: <%= @book.book_comments.count %></td>
+        <td>comments: <%= @book.book_comments.count %></td>
 
         <% if @book.user == current_user %>
           <td><%= link_to "Edit", edit_book_path(@book), class: "btn-sm btn-success edit" %></td>
@@ -73,7 +73,7 @@
           <%= f.text_area :comment, rows: '5', class: "form-control" %>
         </div>
       </div>
-      <%= f.submit "送信", class: "btn btn-default pull-right" %>
+      <%= f.submit "送信", class: " pull-right" %>
     <% end %>
   </div>
 </div>

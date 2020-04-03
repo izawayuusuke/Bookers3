@@ -27,6 +27,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.following.all
+  end
+
+  def followers
+    @titlt = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.all
+  end
+
   private
 
   def book_params
@@ -43,5 +55,4 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
-
 end

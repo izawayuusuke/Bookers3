@@ -19,16 +19,43 @@
             <th>name</th>
             <td><%= user.name %></td>
           </tr>
-
           <tr>
             <th>introduction</th>
             <td><%= user.introduction %></td>
           </tr>
+          <tr>
+            <th>following</th>
+            <td>
+              <%= link_to following_user_path(user) do %>
+                <%= user.following.count %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>followers</th>
+            <td>
+              <%= link_to followers_user_path(user) do %>
+                <%= user.followers.count %>
+              <% end %>
+            </td>
+          </tr>
         </tbody>
       </table>
+
+      <div class="row">
+        <% unless user == current_user %>
+          <% if current_user.following?(user) %>
+            <%= render 'users/unfollow', user: user %>
+          <% else %>
+            <%= render 'users/follow', user: user %>
+          <% end %>
+        <% end %>
+      </div><br>
+
       <div class="row">
         <%= link_to '', edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
       </div>
+
       <h2>New book</h2>
       <%= form_for(book) do |f| %>
 
