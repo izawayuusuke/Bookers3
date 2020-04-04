@@ -1,0 +1,26 @@
+<h2>Comments</h2>
+<table class="table">
+<% @book.book_comments.each do |book_comment| %>
+  <tr>
+    <td>
+      <%= link_to user_path(book_comment.user_id) do %>
+        <%= attachment_image_tag book_comment.user, :profile_image, :fill, 50, 50, class: "img-square profile-img", fallback: "no_image.jpg" %><br>
+        <%= book_comment.user.name %>
+      <% end %>
+    </td>
+    <td><%= book_comment.comment %></td>
+    <% if book_comment.user == current_user %>
+      <td><%= link_to "Destroy", book_book_comments_path(@book), method: :delete, data: { confirm: "本当に消しますか？"}, class: "btn-sm btn-danger destroy" %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<%= form_for [@book, @book_comment] do |f| %>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= f.text_area :comment, rows: '5', class: "form-control" %>
+    </div>
+  </div>
+  <%= f.submit "送信", class: " pull-right" %>
+<% end %>

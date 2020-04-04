@@ -1,0 +1,10 @@
+<% if @book_comment.errors.any? %>
+  <div id="explanation">
+    <h3><%= pluralize(@book_comment.errors.count, "error") %> prohibited this obj from being saved:</h3>
+    <ul>
+      <% @book_comment.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
