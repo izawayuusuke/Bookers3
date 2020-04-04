@@ -31,9 +31,9 @@
 <div class="row">
   <% unless user == current_user %>
     <% if current_user.following?(user) %>
-      <%= render 'users/unfollow', user: user %>
+      <%= render 'follows/unfollow', user: user %>
     <% else %>
-      <%= render 'users/follow', user: user %>
+      <%= render 'follows/follow', user: user %>
     <% end %>
   <% end %>
 </div><br>

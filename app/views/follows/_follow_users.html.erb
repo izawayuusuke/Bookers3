@@ -6,8 +6,8 @@
     <table class="table">
       <thead>
         <tr>
-          <th>image</th>
-          <th>name</th>
+          <th>Image</th>
+          <th>Name</th>
           <th colpsan="4"></th>
         </tr>
       </thead>
@@ -16,7 +16,7 @@
           <tr>
             <td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, class: "image-square, pull-left profile-img", fallback: "no_image.png" %></td>
             <td><%= user.name %></td>
-            <%= render 'users/follow_form', user: user %>
+            <%= render 'follows/follow_form', user: user %>
             <td><%= link_to "Show", user_path(user) %></td>
           </tr>
         <% end %>

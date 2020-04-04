@@ -29,4 +29,20 @@ has_many :active_relationships, class_name: "Relationship",
   def following?(other_user)
     following.include?(other_user)
   end
+
+  def User.search(search, user_or_book, how_search)
+    if user_or_book == "0"
+      if how_search == "0"
+        User.where(['name LIKE ?', "#{search}"])
+      elsif how_search == "1"
+        User.where(['name LIKE ?', "#{search}%"])
+      elsif how_search == "2"
+        User.where(['name LIKE ?', "%#{search}"])
+      elsif how_search == "3"
+        User.where(['name LIKE ?', "%#{search}%"])
+      else
+        User.none
+      end
+    end
+  end
 end

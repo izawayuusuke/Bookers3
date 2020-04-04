@@ -3,9 +3,9 @@
 <td>
   <% unless user == current_user %>
     <% if current_user.following?(user) %>
-      <%= render 'unfollow', user: user %>
+      <%= render 'follows/unfollow', user: user %>
     <% else %>
-      <%= render 'follow', user: user %>
+      <%= render 'follows/follow', user: user %>
     <% end %>
   <% end %>
 </td>
