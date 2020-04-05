@@ -1,4 +1,4 @@
-<%= render 'layouts/sidebar', user: @user, book: @new_book %>
+<%= render 'layouts/sidebar', user: @book.user, book: @new_book %>
 <%= render 'book_comments/comment_error' %>
 
 
@@ -6,28 +6,23 @@
     <h2>Book detail</h2>
     <table class="table">
     <tbody>
-      <tr>
-        <td>
-          <%= link_to user_path(@user) do %>
-            <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, class: "img-square profile-img", fallback: "no_image.png" %><br>
-            <%= @user.name %>
-          <% end %>
-        </td>
-        <td><%= @book.title %></td>
-        <td> <%= @book.body %> </td>
-
-        <%= render 'favorites/favorites', book: @book %>
-
-        <td>comments: <%= @book.book_comments.count %></td>
-
-        <% if @book.user == current_user %>
-          <td><%= link_to "Edit", edit_book_path(@book), class: "btn-sm btn-success edit" %></td>
-          <td><%= link_to "Destroy", book_path(@book), method: :delete, data: { confirm: "本当に消しますか？"}, class: "btn-sm btn-danger destroy" %></td>
-        <% end %>
+      <tr class="book_<%= @book.id %>">
+        <%= render 'books/detail', book: @book %>
       </tr>
     </tbody>
     </table>
 
-    <%= render 'book_comments/comments' %>
+    <h2>Comments</h2>
+    <table class="table comment_<%= @book.id %>">
+      <%= render 'book_comments/comment', book_comments: @book.book_comments %>
+    </table>
+
+<%= form_with model:[@book, @book_comment], data: {remote: true} do |f| %>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= f.text_area :comment, rows: '5', class: "form-control" %>
+      <%= f.submit "送信", class: " pull-right" %>
+    </div>
   </div>
+<% end %>
 </div>
