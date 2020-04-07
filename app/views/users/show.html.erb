@@ -30,7 +30,7 @@
 
 <% if @user == current_user %>
 <h2>google map</h2>
-<div id='map' class="<%= @user.prefecture_code %>"></div>
+<div id='map' class="<%= @user.prefecture_code + @user.address_city + @user.address_street %>"></div>
 <% end %>
 <style>
   #map {
@@ -53,13 +53,18 @@ geocoderを用意
     geocoder.geocode({
       'address': $('#map').attr('class')
     }, function(results, status) {
-      // map.setCenterで地図が移動
-      map.setCenter(results[0].geometry.location);
-      // google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
-      var marker = new google.maps.Marker({
-        map: map,
-        position: results[0].geometry.location
-      });
+      if (status == 'OK') {
+        // map.setCenterで地図が移動
+        map.setCenter(results[0].geometry.location);
+
+        // google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+        var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
     });
 
     map = new google.maps.Map(document.getElementById('map'), {

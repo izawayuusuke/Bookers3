@@ -70,3 +70,18 @@ class UsersController < ApplicationController
     params.require(:user).permit(:postal_code, :prefecture_name, :address_city, :address_street, :address_building)
   end
 end
+
+# class Users::RegistrationController < Devise::RegistrationController
+#   def create
+#     respond_to do |format|
+#       if @user.save
+#         ThanksMailer.compelete_mail(@user).delivar_now
+#         format.html { redirect_to @user, notice: 'User was successfully created' }
+#         format.json { render :show, status: :created, location: @user }
+#       else
+#         format.html { render :new}
+#         format.json { render json: @user.errors, status: :unprocessable_entity }
+#       end
+#     end
+#   end
+# end
