@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Bookers2</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>Bookers2</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
-    <%= render 'layouts/header' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-    <div class="container">
+<body>
+  <%= render 'layouts/header' %>
+
+  <div class="container">
 
     <%= render 'searches/search_form' %>
 
 
     <p id="notice"><%= notice %></p>
-      <%= yield %>
-    </div>
+    <%= yield %>
+  </div>
 
-    <%= render 'layouts/footer' %>
-  </body>
+  <%= render 'layouts/footer' %>
+</body>
+
 </html>

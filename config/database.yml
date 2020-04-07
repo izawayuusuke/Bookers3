@@ -6,8 +6,13 @@
 #
 default: &default
   adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") %>
+  host: <%= ENV.fetch("DATABASE_HOST") %>
+  username: <%= ENV.fetch("DATABASE_USER") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD")%>
+  database: <%= ENV.fetch("DATABASE_NAME") %>
   timeout: 5000
+  key: <%= ENV.fetch("SECRET_KEY") %>
 
 development:
   <<: *default

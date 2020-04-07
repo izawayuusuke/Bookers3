@@ -65,4 +65,8 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+
+  def address_params
+    params.require(:user).permit(:postal_code, :prefecture_name, :address_city, :address_street, :address_building)
+  end
 end
