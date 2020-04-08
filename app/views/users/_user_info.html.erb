@@ -13,7 +13,7 @@
       <th>following</th>
       <td>
         <%= link_to following_user_path(user) do %>
-          <%= user.following.count %>
+        <%= user.following.count %>
         <% end %>
       </td>
     </tr>
@@ -21,20 +21,28 @@
       <th>followers</th>
       <td>
         <%= link_to followers_user_path(user) do %>
-          <%= user.followers.count %>
+        <%= user.followers.count %>
         <% end %>
       </td>
+    </tr>
+    <tr>
+      <th>
+        <% unless user == current_user %>
+        <%= link_to 'chat room', chat_path(user.id), class: "chat" %>
+        <% end %>
+      </th>
+      <td></td>
     </tr>
   </tbody>
 </table>
 
 <div class="row">
   <% unless user == current_user %>
-    <% if current_user.following?(user) %>
-      <%= render 'follows/unfollow', user: user %>
-    <% else %>
-      <%= render 'follows/follow', user: user %>
-    <% end %>
+  <% if current_user.following?(user) %>
+  <%= render 'follows/unfollow', user: user %>
+  <% else %>
+  <%= render 'follows/follow', user: user %>
+  <% end %>
   <% end %>
 </div><br>
 

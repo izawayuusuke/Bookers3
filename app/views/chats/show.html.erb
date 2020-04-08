@@ -1,0 +1,18 @@
+<h1 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>">Chat with <%= @user.name %></h1>
+
+<div class="message">
+  <% @chats.each do |chat| %>
+
+  <% if chat.user.id == current_user.id %>
+  <p class="text-right"><%= chat.message %></p>
+  <% else %>
+  <p class="text-left"><%= chat.message %></p>
+  <% end %>
+
+  <% end %>
+</div>
+
+<%= form_with model: @chat, data: {remote: true} do |f| %>
+<%= f.text_field :message %>
+<%= f.hidden_field :room_id %>
+<% end %>
