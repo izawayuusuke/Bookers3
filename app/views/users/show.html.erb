@@ -30,7 +30,7 @@
 
 <% if @user == current_user %>
 <h2>google map</h2>
-<div id='map' class="<%= @user.prefecture_code + @user.address_city + @user.address_street %>"></div>
+<div id='map' class="<%= @user.prefecture_code %>"></div>
 <% end %>
 <style>
   #map {

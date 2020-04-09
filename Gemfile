@@ -70,3 +70,4 @@ gem 'jp_prefecture'
 gem 'dotenv-rails'
 gem 'gmaps4rails'
 gem 'geocoder'
+gem 'whenever', require: false
