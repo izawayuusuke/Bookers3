@@ -30,7 +30,11 @@
 
 <% if @user == current_user %>
   <h2>Your MAP</h2>
-  <div id='map' class="<%= @user.prefecture_code + @user.address_city + @user.address_street %>"></div>
+  <% if @user.address_building.present? %>
+    <div id='map' class="<%= @user.prefecture_code + @user.address_city + @user.address_street + @user.address_building %>"></div>
+  <% else %>
+    <div id='map' class="<%= @user.prefecture_code + @user.address_city %>"></div>
+  <% end %>
 <% end %>
 
 <style>

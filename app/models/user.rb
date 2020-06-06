@@ -20,8 +20,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { in: 2..20 }
   validates :introduction, length: { maximum: 50 }
-  validates :postal_code, :prefecture_code,
-      :address_city, :address_street, presence: true
+  validates :prefecture_code, :address_city, :address_street, presence: true
+  validates :postal_code, format: { with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}\z/ }
 
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
