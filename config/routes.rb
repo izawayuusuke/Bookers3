@@ -18,4 +18,8 @@ Rails.application.routes.draw do
   end
   resources :relationships, only: [:create, :destroy]
   resources :chats, only: [:create]
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: '/letter_opener'
+  end
 end

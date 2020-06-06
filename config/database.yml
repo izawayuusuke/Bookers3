@@ -12,7 +12,7 @@ default: &default
   password: <%= ENV.fetch("DATABASE_PASSWORD")%>
   database: <%= ENV.fetch("DATABASE_NAME") %>
   timeout: 5000
-  key: <%= ENV.fetch("SECRET_KEY") %>
+  key: <%= ENV.fetch("GOOGLE_MAP_API") %>
 
 development:
   <<: *default
