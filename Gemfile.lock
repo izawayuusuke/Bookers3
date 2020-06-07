@@ -62,9 +62,9 @@ GEM
     bindex (0.8.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
-    bootstrap-sass (3.3.7)
+    bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
+      sassc (>= 2.0.0)
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.32.2)
@@ -237,6 +237,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     sinatra (2.0.8.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -288,7 +290,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   bootsnap (>= 1.1.0)
-  bootstrap-sass (~> 3.3.6)
+  bootstrap-sass (~> 3.4.1)
   byebug
   capybara (>= 2.15)
   coffee-rails (~> 4.2)
