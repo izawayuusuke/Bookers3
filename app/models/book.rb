@@ -7,6 +7,8 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true, length: { maximum: 200 }
 
+  acts_as_taggable
+
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end

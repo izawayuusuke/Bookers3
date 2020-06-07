@@ -4,7 +4,11 @@ class BooksController < ApplicationController
   before_action :ranking_books
 
   def index
-    @books = Book.all
+    if params[:tag]
+      @books = Book.tagged_with(params[:tag])
+    else
+      @books = Book.all
+    end
     @book = Book.new
   end
 
@@ -21,6 +25,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
+      byebug
       flash[:notice] = "You have created book successfully."
       redirect_to @book
     else
@@ -51,18 +56,18 @@ class BooksController < ApplicationController
   end
 
   private
-  def book_params
-    params.require(:book).permit(:title, :body)
-  end
-
-  def user_params
-    params.require(:user).permit(:name, :introduction, :profile_image)
-  end
-
-  def correct_book
-    @book = Book.find(params[:id])
-    unless @book.user == current_user
-      redirect_to books_path
+    def book_params
+      params.require(:book).permit(:title, :body, :tag_list)
     end
-  end
+
+    def user_params
+      params.require(:user).permit(:name, :introduction, :profile_image)
+    end
+
+    def correct_book
+      @book = Book.find(params[:id])
+      unless @book.user == current_user
+        redirect_to books_path
+      end
+    end
 end
