@@ -11,6 +11,9 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
+  def ranking_books
+    @ranking_books = Book.find(Favorite.group(:book_id).rank.limit(3).pluck(:book_id))
+  end
 
   protected
   def configure_permitted_parameters

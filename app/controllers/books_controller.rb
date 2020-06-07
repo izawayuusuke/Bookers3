@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_book, only: [:edit, :update]
+  before_action :ranking_books
 
   def index
     @books = Book.all
@@ -13,6 +14,7 @@ class BooksController < ApplicationController
     @book_comment = BookComment.new
     @book_commets = @book.book_comments
     @user = User.find(@book.user_id)
+    @books = Book.all
   end
 
   def create
