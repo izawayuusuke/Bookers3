@@ -7,7 +7,9 @@
 <td><%= book.body %></td>
 
 <td>
-  <%= raw(book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %>
+  <% book.tag_list.each do |tag| %>
+    <%= link_to tag, tag_path(tag), class: "label label-primary" %>
+  <% end %>
 </td>
 
 <td>
