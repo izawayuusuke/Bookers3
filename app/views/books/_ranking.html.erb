@@ -1,12 +1,8 @@
 <table class="table">
   <% @ranking_books.each.with_index(1) do |book, i| %>
     <tr>
-      <th><span class="ranking-<%= i %>"><%= i %>位</span> Title</th>
-      <td><%= book.title %></td>
-    </tr>
-    <tr>
-      <th>Opinion</th>
-      <td><%= book.body %></td>
+      <th><span class="ranking-<%= i %>"><%= i %>位</span></th>
+      <td><%= link_to book.title, book_path(book) %></td>
     </tr>
   <% end %>
 </table>

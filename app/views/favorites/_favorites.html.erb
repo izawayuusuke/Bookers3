@@ -7,9 +7,7 @@
 <td><%= book.body %></td>
 
 <td>
-  <% book.tag_list.each do |tag| %>
-    <%= link_to tag, tag_path(tag), class: "label label-primary" %>
-  <% end %>
+  <%= render 'books/tag', book: book %>
 </td>
 
 <td>

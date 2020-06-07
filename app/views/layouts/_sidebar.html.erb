@@ -8,6 +8,9 @@
       <h2>New book</h2>
       <%= render 'books/new_book', book: book %>
 
+      <% if current_page?(user_path(current_user)) %>
+        <span class="my-ranking"><%= current_user.name %>'s</span>
+      <% end %>
       <h2>Book rank</h2>
       <%= render 'books/ranking' %>
     </div>

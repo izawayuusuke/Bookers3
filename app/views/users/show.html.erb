@@ -35,54 +35,54 @@
   <% else %>
     <div id='map' class="<%= @user.prefecture_code + @user.address_city %>"></div>
   <% end %>
-<% end %>
 
-<style>
-  #map {
-    height: 400px;
-  }
-</style>
-
-<script>
-/*
-mapを関数の外で定義(codeAddressでも使うため)
-geocoderを用意
-*/
-
-let map
-let geocoder
-
-function initMap(){
-  // geocoderを初期化
-  geocoder = new google.maps.Geocoder()
-  geocoder.geocode( { 'address': $('#map').attr('class')}, function(results, status) {
-    if (status == 'OK') {
-　　　　　　　　　　　　// map.setCenterで地図が移動
-      map.setCenter(results[0].geometry.location);
-
-　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
+  <style>
+    #map {
+      height: 400px;
     }
-  });
+  </style>
 
-  map = new google.maps.Map(document.getElementById('map'), {
-  center: {lat: -34.397, lng: 150.644},
-  zoom: 8
-  });
-}
+  <script>
+  /*
+  mapを関数の外で定義(codeAddressでも使うため)
+  geocoderを用意
+  */
 
-function codeAddress(){
-  // 入力を取得
-  let inputAddress = document.getElementById('address').value;
+  let map
+  let geocoder
 
-  // geocodingしたあとmapを移動
-}
-</script>
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap">
-</script>
+  function initMap(){
+    // geocoderを初期化
+    geocoder = new google.maps.Geocoder()
+    geocoder.geocode( { 'address': $('#map').attr('class')}, function(results, status) {
+      if (status == 'OK') {
+  　　　　　　　　　　　　// map.setCenterで地図が移動
+        map.setCenter(results[0].geometry.location);
+
+  　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+
+    map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 8
+    });
+  }
+
+  function codeAddress(){
+    // 入力を取得
+    let inputAddress = document.getElementById('address').value;
+
+    // geocodingしたあとmapを移動
+  }
+  </script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap">
+  </script>
+<% end %>
