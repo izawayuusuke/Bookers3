@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update]
-  before_action :ranking_books
+  before_action :ranking_books, except: [:show]
 
   def index
     @book = Book.new
@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @book = Book.new
     @books = @user.books
+    @ranking_books = Book.my_rank(current_user)
   end
 
   def edit

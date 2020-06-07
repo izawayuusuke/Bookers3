@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def ranking_books
-    @ranking_books = Book.find(Favorite.group(:book_id).rank.limit(3).pluck(:book_id))
+    @ranking_books = Book.ranking
   end
 
   protected

@@ -26,4 +26,9 @@ class Book < ApplicationRecord
       end
     end
   end
+
+  scope :ranking, -> { find(Favorite.group(:book_id)
+                      .rank.limit(3).pluck(:book_id)) }
+  scope :my_rank, -> (current_user) { find(Favorite.my_book(current_user)
+                      .group(:book_id).rank.limit(3).pluck(:book_id)) }
 end
