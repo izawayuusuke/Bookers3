@@ -9,6 +9,11 @@
           <th>Title</th>
           <th>Opinion</th>
           <th>Tag</th>
+          <th>
+            <%= form_tag(sort_path, :method => 'get', id: "submit_form") do %>
+              <%= select_tag(:option, options_for_select([["ーーーーー", "0"],["新着順", "1"],["人気順", "2"],["コメント順", "3"]]), id: "submit_select", name: "submit_select") %>
+            <% end %>
+          </th>
           <th colspan="3"></th>
         </tr>
       </thead>

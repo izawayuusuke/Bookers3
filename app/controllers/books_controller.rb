@@ -4,7 +4,9 @@ class BooksController < ApplicationController
   before_action :ranking_books
 
   def index
-    if params[:tag]
+    if params[:submit_select]
+      sort_books
+    elsif params[:tag]
       @books = Book.tagged_with(params[:tag])
     else
       @books = Book.all
@@ -67,6 +69,19 @@ class BooksController < ApplicationController
       @book = Book.find(params[:id])
       unless @book.user == current_user
         redirect_to books_path
+      end
+    end
+
+    def sort_books
+      case params[:submit_select]
+      when "0"
+        @books = Book.all
+      when "1"
+        @books = Book.all.order(created_at: :desc)
+      when "2"
+        @books = Book.all_rank
+      when "3"
+        @books = Book.order_comment
       end
     end
 end

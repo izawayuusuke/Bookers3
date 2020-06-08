@@ -30,3 +30,36 @@ $(function () {
     });
   });
 });
+
+// URLからパラメータを取得する
+// function getUrlVars() {
+//   var vars = {};
+//   var param = location.search.substring(1).split("&");
+//   for (var i = 0; i < param.length; i++) {
+//     var keySearch = param[i].search(/=/);
+//     var key = "";
+//     if (keySearch != -1) key = param[i].slice(0, keySearch);
+//     var val = param[i].slice(param[i].indexOf("=", 0) + 1);
+//     if (key != "") vars[key] = decodeURI(val);
+//   }
+//   return vars;
+// }
+
+// セレクトタブの状態を保持する
+// $(function () {
+//   var val = getUrlVars();
+//   var submit_select = val.submit_select;
+//   if (submit_select) {
+//     var now_select = $("#submit_select").find(
+//       'option[value="' + submit_select + '"]'
+//     );
+//     $(now_select).prop("selected", true);
+//   }
+// });
+
+// セレクトタブが変更されたら、サブミットする
+// $(function () {
+//   $("#submit_form").change(function () {
+//     $(this).submit();
+//   });
+// });
