@@ -3,9 +3,13 @@ class BooksController < ApplicationController
   before_action :correct_book, only: [:edit, :update]
   before_action :ranking_books
 
+  helper_method :sort_column, :sort_direction
+
   def index
     if params[:submit_select]
       sort_books
+    elsif params[:sort]
+      @books = Book.order(sort_column + ' ' + sort_direction)
     elsif params[:tag]
       @books = Book.tagged_with(params[:tag])
     else
@@ -25,6 +29,7 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    byebug
     @book.user_id = current_user.id
     if @book.save
       flash[:notice] = "You have created book successfully."
@@ -70,6 +75,14 @@ class BooksController < ApplicationController
       unless @book.user == current_user
         redirect_to books_path
       end
+    end
+
+    def sort_column
+      Book.column_names.include?(params[:sort]) ? params[:sort] : "title"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 
     def sort_books

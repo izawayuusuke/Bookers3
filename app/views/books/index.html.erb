@@ -6,8 +6,8 @@
       <thead>
         <tr>
           <th></th>
-          <th>Title</th>
-          <th>Opinion</th>
+          <th><%= sortable "title" %></th>
+          <th><%= sortable "body", "Opinion" %></th>
           <th>Tag</th>
           <th>
             <%= form_tag(sort_path, :method => 'get', id: "submit_form") do %>

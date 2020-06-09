@@ -18,3 +18,12 @@
   top: 18px;
   left: -7px;
 }
+.current {
+  font-family: "Font Awesome 5 Free";
+}
+.asc:after {
+  content: "\f0d8";
+}
+.desc:after {
+  content: "\f0d7";
+}
