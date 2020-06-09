@@ -11,14 +11,6 @@
 </td>
 
 <td>
-  <% if book.favorited_by?(current_user) %>
-    <%=link_to book_favorites_path(book), method: :delete,  remote: true do %>
-        <span class="glyphicon glyphicon-heart"><%= book.favorites.count %></span>
-    <% end %>
-  <% else %>
-    <%= link_to book_favorites_path(book), method: :post, remote: true do %>
-      <span class="glyphicon glyphicon-heart-empty"><%= book.favorites.count %></span>
-    <% end %>
-  <% end %>
+  <%= render 'favorites/hart_button', book: book %>
 </td>
-<td>comments: <%= book.book_comments.count %></td>
+<td><%= book.book_comments.count %></td>
