@@ -11,18 +11,24 @@ describe 'ユーザー認証のテスト' do
         fill_in 'user[email]', with: Faker::Internet.email
         fill_in 'user[password]', with: 'password'
         fill_in 'user[password_confirmation]', with: 'password'
+        fill_in 'user[postal_code]', with: '5600035'
+        fill_in 'user[address_city]', with: 'テスト市'
+        fill_in 'user[address_street]', with: 'テスト町1丁目'
         click_button 'Sign up'
 
-        expect(page).to have_content 'successfully'
+        expect(page).to have_content 'アカウント登録が完了しました'
       end
       it '新規登録に失敗する' do
         fill_in 'user[name]', with: ''
         fill_in 'user[email]', with: ''
         fill_in 'user[password]', with: ''
         fill_in 'user[password_confirmation]', with: ''
+        fill_in 'user[postal_code]', with: ''
+        fill_in 'user[address_city]', with: ''
+        fill_in 'user[address_street]', with: ''
         click_button 'Sign up'
 
-        expect(page).to have_content 'error'
+        expect(page).to have_content 'エラー'
       end
     end
   end
@@ -38,7 +44,7 @@ describe 'ユーザー認証のテスト' do
         fill_in 'user[password]', with: test_user.password
         click_button 'Log in'
 
-        expect(page).to have_content 'successfully'
+        expect(page).to have_content 'ログインしました'
       end
 
       it 'ログインに失敗する' do

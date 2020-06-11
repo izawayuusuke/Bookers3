@@ -116,7 +116,7 @@ describe 'ヘッダーのテスト' do
         logout_link = find_all('a')[3].native.inner_text
         logout_link = logout_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
         click_link logout_link
-        expect(page).to have_content 'Signed out successfully.'
+        expect(page).to have_content 'ログアウトしました'
       end
     end
   end

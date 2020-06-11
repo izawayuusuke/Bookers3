@@ -1,0 +1,33 @@
+  <div class="col-xs-9">
+    <h2>Books</h2>
+    <table class="table table-hover table-inverse">
+      <thead>
+        <tr>
+          <th></th>
+          <th><%= sortable "title" %></th>
+          <th><%= sortable "body", "Opinion" %></th>
+          <th>Tag</th>
+          <th><%= sortable "created_at", "date" %></th>
+          <th></th>
+
+          <% if controller.controller_name == "books" %>
+            <th>
+              <%= form_tag(sort_path, :method => 'get', id: "submit_form") do %>
+                <%= select_tag(:option, options_for_select([["ーーーーー", "0"],["新着順", "1"],["人気順", "2"],["コメント順", "3"]]), id: "submit_select", name: "submit_select") %>
+              <% end %>
+            </th>
+          <% end %>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @books.each do |book| %>
+          <tr class="book_<%= book.id %>">
+            <%= render 'favorites/favorites', book: book %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @books %>
+  </div>
+</div>

@@ -1,29 +1,6 @@
 <%= render 'layouts/sidebar', user: @user, book: @book %>
-  <div class="col-xs-9">
-    <h2>Books</h2>
-    <table class="table table-hover tableinverse">
-      <thead>
-        <tr>
-          <th></th>
-          <th><%= sortable "title" %></th>
-          <th><%= sortable "body", "Opinion" %></th>
-          <th>Tag</th>
-          <th><%= sortable "created_at", "date" %></th>
-          <th></th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <% @books.each do |book| %>
-          <tr class="book_<%= book.id %>">
-            <%= render 'favorites/favorites', book: book %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= paginate @books %>
-  </div>
-</div>
+<%= render 'books/index' %>
 
 <% if @user == current_user %>
   <h2>Your MAP</h2>

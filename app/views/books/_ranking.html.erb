@@ -1,3 +1,6 @@
+<% if @ranking_books.empty? %>
+  <p style="font-weight: bold;">ランキングがありません</p>
+<% end %>
 <table class="table">
   <% @ranking_books.each.with_index(1) do |book, i| %>
     <tr>
