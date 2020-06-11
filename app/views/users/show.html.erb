@@ -5,26 +5,23 @@
       <thead>
         <tr>
           <th></th>
-          <th>Title</th>
-          <th>Opinion</th>
+          <th><%= sortable "title" %></th>
+          <th><%= sortable "body", "Opinion" %></th>
+          <th>Tag</th>
+          <th><%= sortable "created_at", "date" %></th>
           <th></th>
-          <th colspan="3"></th>
         </tr>
       </thead>
 
       <tbody>
         <% @books.each do |book| %>
-        <tr>
-          <td>
-            <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-square pull-left profile-img", fallback: "no_image.png" %>
-          </td>
-          <td><%= link_to book.title, book_path(book) %></td>
-          <td> <%= book.body %> </td>
-          <td>comments: <%= book.book_comments.count %></td>
-        </tr>
+          <tr class="book_<%= book.id %>">
+            <%= render 'favorites/favorites', book: book %>
+          </tr>
         <% end %>
       </tbody>
     </table>
+    <%= paginate @books %>
   </div>
 </div>
 

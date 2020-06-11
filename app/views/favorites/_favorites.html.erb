@@ -5,12 +5,15 @@
 </td>
 <td><%= link_to book.title, book %></td>
 <td><%= book.body %></td>
-
 <td>
   <%= render 'books/tag', book: book %>
 </td>
 
 <td>
+  <%= book.created_at.strftime("%Y年%m月%d日") %>
+</td>
+
+<td>
   <%= render 'favorites/hart_button', book: book %>
 </td>
-<td><%= book.book_comments.count %></td>
+<td><i class="far fa-comment"></i><%= book.book_comments.count %></td>

@@ -10,7 +10,7 @@
 <td>
   <%= render 'favorites/hart_button', book: book %>
 </td>
-<td>comments: <%= book.book_comments.count %></td>
+<td><i class="far fa-comment"><%= book.book_comments.count %></i></td>
 
 <% if @book.user == current_user %>
   <td><%= link_to "Edit", edit_book_path(book), class: "btn-sm btn-success edit" %></td>

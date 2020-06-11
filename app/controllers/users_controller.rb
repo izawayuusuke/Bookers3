@@ -5,13 +5,18 @@ class UsersController < ApplicationController
 
   def index
     @book = Book.new
-    @users = User.all
+    @users = User.page(params[:page])
   end
 
   def show
     @user = User.find(params[:id])
     @book = Book.new
-    @books = @user.books
+    if params[:sort]
+      @books = Book.where(user_id: @user.id).order(sort_column + ' ' + sort_direction).page(params[:page])
+    else
+      @books = @user.books.page(params[:page])
+    end
+
     @ranking_books = Book.my_rank(current_user)
   end
 
@@ -32,13 +37,13 @@ class UsersController < ApplicationController
   def following
     @title = "Following"
     @user = User.find(params[:id])
-    @users = @user.following.all
+    @users = @user.following.page(params[:page])
   end
 
   def followers
     @titlt = "Followers"
     @user = User.find(params[:id])
-    @users = @user.followers.all
+    @users = @user.followers.page(params[:page])
   end
 
   def search

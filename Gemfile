@@ -75,3 +75,5 @@ gem 'geocoder'
 gem 'whenever', require: false
 gem 'acts-as-taggable-on'
 gem 'font-awesome-sass'
+gem 'kaminari'
+gem 'rails-i18n'

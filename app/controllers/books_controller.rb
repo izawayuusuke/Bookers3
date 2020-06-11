@@ -3,17 +3,15 @@ class BooksController < ApplicationController
   before_action :correct_book, only: [:edit, :update]
   before_action :ranking_books
 
-  helper_method :sort_column, :sort_direction
-
   def index
     if params[:submit_select]
       sort_books
     elsif params[:sort]
-      @books = Book.order(sort_column + ' ' + sort_direction)
+      @books = Book.order(sort_column + ' ' + sort_direction).page(params[:page])
     elsif params[:tag]
-      @books = Book.tagged_with(params[:tag])
+      @books = Book.tagged_with(params[:tag]).page(params[:page])
     else
-      @books = Book.all
+      @books = Book.page(params[:page])
     end
     @book = Book.new
   end
@@ -29,14 +27,13 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-    byebug
     @book.user_id = current_user.id
     if @book.save
       flash[:notice] = "You have created book successfully."
       redirect_to @book
     else
       @user = current_user
-      @books = Book.all
+      @books = Book.all.page(params[:page])
       render :index
     end
   end
@@ -77,24 +74,16 @@ class BooksController < ApplicationController
       end
     end
 
-    def sort_column
-      Book.column_names.include?(params[:sort]) ? params[:sort] : "title"
-    end
-
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-    end
-
     def sort_books
       case params[:submit_select]
       when "0"
-        @books = Book.all
+        @books = Book.page(params[:page])
       when "1"
-        @books = Book.all.order(created_at: :desc)
+        @books = Book.order(created_at: :desc).page(params[:page])
       when "2"
-        @books = Book.all_rank
+        @books = Kaminari.paginate_array(Book.all_rank).page(params[:page])
       when "3"
-        @books = Book.order_comment
+        @books = Kaminari.paginate_array(Book.order_comment).page(params[:page])
       end
     end
 end

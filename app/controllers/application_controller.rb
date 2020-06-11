@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
-  before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  helper_method :sort_column, :sort_direction
 
   private
   def after_sign_in_path_for(resource)
@@ -13,6 +14,14 @@ class ApplicationController < ActionController::Base
 
   def ranking_books
     @ranking_books = Book.ranking
+  end
+
+  def sort_column
+    Book.column_names.include?(params[:sort]) ? params[:sort] : "title"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
   protected
